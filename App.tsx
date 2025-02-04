@@ -24,6 +24,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {requireNativeComponent} from 'react-native';
+
+const MyComposeView = requireNativeComponent('MyComposeView');
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -72,6 +75,14 @@ function App(): React.JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <View style={styles.container}>
+          <MyComposeView
+            style={{
+              width: 300,
+              height: 200,
+            }}
+          />
+        </View>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -97,6 +108,11 @@ function App(): React.JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
