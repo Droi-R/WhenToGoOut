@@ -1,7 +1,5 @@
 package com.whentogoout
 
-package com.yourapp
-
 import android.content.Context
 import android.view.View
 import android.widget.FrameLayout
