@@ -24,9 +24,18 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {requireNativeComponent} from 'react-native';
 
-const MyComposeView = requireNativeComponent('MyComposeView');
+// import {requireNativeComponent} from 'react-native';
+
+import { requireNativeComponent, ViewStyle } from 'react-native';
+
+type MyComposeViewProps = {
+    style?: ViewStyle;
+};
+
+const MyComposeView = requireNativeComponent<MyComposeViewProps>('MyComposeView');
+
+// const MyComposeView = requireNativeComponent('MyComposeView');
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -76,12 +85,12 @@ function App(): React.JSX.Element {
         style={backgroundStyle}>
         <Header />
         <View style={styles.container}>
-          <MyComposeView
-            style={{
-              width: 300,
-              height: 200,
-            }}
-          />
+            <MyComposeView
+                style={{
+                    width: 300,
+                    height: 200,
+                }}
+            />
         </View>
         <View
           style={{
