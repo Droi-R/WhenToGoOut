@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
@@ -22,9 +23,12 @@ fun MyComposeComponent() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.LightGray)
-            .padding(16.dp)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
-        Text(text = "Hello from Jetpack Compose!", color = Color.Black)
+        Text(text = "splash Page", color = Color.Black)
     }
 }
 
