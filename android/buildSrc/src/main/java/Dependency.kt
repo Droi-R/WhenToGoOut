@@ -1,6 +1,7 @@
 object Versions {
-    const val HILT_VERSION = "2.44"
+    const val HILT_VERSION = "2.50"
     const val COMPOSE_VERSION = "1.5.3"
+    const val KOTLIN_VERSION = "1.9.21"
 }
 
 
@@ -42,8 +43,7 @@ object AndroidTest {
 object DaggerHilt {
     const val DAGGER_HILT = "com.google.dagger:hilt-android:${Versions.HILT_VERSION}"
     const val DAGGER_HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT_VERSION}"
-    const val DAGGER_HILT_VIEW_MODEL = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-    const val DAGGER_HILT_ANDROIDX_COMPILER = "androidx.hilt:hilt-compiler:1.0.0"
+    const val DAGGER_HILT_COMPOSE = "androidx.hilt:hilt-navigation-compose:1.1.0"
 }
 
 object Retrofit {

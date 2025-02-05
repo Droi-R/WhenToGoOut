@@ -5,7 +5,6 @@ buildscript {
         compileSdkVersion = 35
         targetSdkVersion = 34
         ndkVersion = "27.1.12297006"
-        kotlinVersion = "2.0.21"
     }
     repositories {
         google()
@@ -15,9 +14,16 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN_VERSION}")
         classpath("org.jetbrains.compose:compose-gradle-plugin:${Versions.COMPOSE_VERSION}")
         classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT_VERSION}")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
     }
 }
 

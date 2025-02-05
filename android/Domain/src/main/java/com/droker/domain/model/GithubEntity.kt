@@ -3,7 +3,7 @@ package com.droker.domain.model
 import com.google.gson.annotations.SerializedName
 
 
-data class GithubResponse(
+data class GithubEntity(
     @SerializedName("name")
     val name: String,
     @SerializedName("id")

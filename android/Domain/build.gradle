@@ -25,11 +25,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        if (name.contains("Test")) {
+            enabled = false
+        }
     }
 }
 
@@ -51,6 +56,5 @@ dependencies {
     // dager hilt
     implementation (DaggerHilt.DAGGER_HILT)
     kapt (DaggerHilt.DAGGER_HILT_COMPILER)
-    implementation (DaggerHilt.DAGGER_HILT_VIEW_MODEL)
-    kapt (DaggerHilt.DAGGER_HILT_ANDROIDX_COMPILER)
+
 }

@@ -2,7 +2,7 @@ package com.whentogoout.viewmode
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.droker.domain.model.GithubResponse
+import com.droker.domain.model.GithubEntity
 import com.droker.domain.usecase.GetUserRepoUseCase
 import com.whentogoout.base.BaseViewModel
 import com.whentogoout.utils.ScreenState
@@ -15,8 +15,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getUserRepoUseCase: GetUserRepoUseCase
 ) : BaseViewModel() {
-    val eventUserRepo: LiveData<List<GithubResponse>> get() = _eventUserRepo
-    private val _eventUserRepo = SingleLiveEvent<List<GithubResponse>>()
+    val eventUserRepo: LiveData<List<GithubEntity>> get() = _eventUserRepo
+    private val _eventUserRepo = SingleLiveEvent<List<GithubEntity>>()
 
 
     fun getUserRepo(owner: String) = viewModelScope.launch {
