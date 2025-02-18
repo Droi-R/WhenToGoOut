@@ -17,16 +17,46 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.droker.domain.model.GithubEntity
 
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun PreviewHomeScreen() {
-    HomeScreen()
+    HomeScreenScaffold(
+        uiState = UiState.Success,
+        homeItems = listOf(
+            GithubEntity("Droker", "ididid", "2025", "http"),
+            GithubEntity("Droker", "ididid", "2025", "http"),
+            GithubEntity("Droker", "ididid", "2025", "http"),
+            GithubEntity("Droker", "ididid", "2025", "http"),
+        )
+    )
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+//    val homeItems by viewModel.homeItems.collectAsState()
+//    val uiState by viewModel.uiState.collectAsState()
+//
+//    viewModel.getUserRepo("Droker")
+//
+//    Scaffold(
+//        topBar = { TopAppBar(title = { Text("Home") }) }
+//    ) { padding ->
+//        Box(modifier = Modifier.fillMaxSize().padding(padding)) {
+//            when (uiState) {
+//                is UiState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+//                is UiState.Success -> HomeContent(homeItems)
+//                is UiState.Error -> {
+//                    val errorMessage = (uiState as UiState.Error).message
+//                    Text(text = errorMessage, modifier = Modifier.align(Alignment.Center), color = Color.Red)
+//                }
+//            }
+//        }
+//    }
+//}
+
+
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val homeItems by viewModel.homeItems.collectAsState()
@@ -34,19 +64,59 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     viewModel.getUserRepo("Droker")
 
+    // Scaffold 부분을 별도 함수로 분리
+    HomeScreenScaffold(
+        uiState = uiState,
+        homeItems = homeItems
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HomeScreenScaffold(
+    uiState: UiState,
+    homeItems: List<GithubEntity>
+) {
     Scaffold(
         topBar = { TopAppBar(title = { Text("Home") }) }
     ) { padding ->
-        Box(modifier = Modifier.fillMaxSize().padding(padding)) {
-            when (uiState) {
-                is UiState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                is UiState.Success -> HomeContent(homeItems)
-                is UiState.Error -> {
-                    val errorMessage = (uiState as UiState.Error).message
-                    Text(text = errorMessage, modifier = Modifier.align(Alignment.Center), color = Color.Red)
-                }
-            }
+        HomeScreenContent(
+            uiState = uiState,
+            homeItems = homeItems,
+            padding = padding
+        )
+    }
+}
+
+
+@Composable
+fun HomeScreenContent(
+    uiState: UiState,
+    homeItems: List<GithubEntity>,
+    padding: PaddingValues
+) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .padding(padding)) {
+        when (uiState) {
+            is UiState.Loading -> LoadingView()
+            is UiState.Success -> HomeContent(homeItems)
+            is UiState.Error -> ErrorView((uiState as UiState.Error).message)
         }
+    }
+}
+
+@Composable
+fun LoadingView() {
+    Box(modifier = Modifier.fillMaxSize()) {
+        CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+    }
+}
+
+@Composable
+fun ErrorView(errorMessage: String) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Text(text = errorMessage, modifier = Modifier.align(Alignment.Center), color = Color.Red)
     }
 }
 
