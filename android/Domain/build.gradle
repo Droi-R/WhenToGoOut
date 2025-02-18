@@ -52,19 +52,32 @@ android {
         }
     }
 
-    tasks.register("openApiGenerateDomain", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+
+    /*
+    setx KOTLIN_POST_PROCESS_FILE "C:\tools\ktlint\ktlint.bat"
+    KOTLIN_POST_PROCESS_FILE C:\tools\ktlint\ktlint.bat 시스템 변수 설정하기
+    PATH에 C:\tools\ktlint 추가하기
+    https://github.com/pinterest/ktlint/releases ktlint
+    ./gradlew :Domain:openApiGenerateDomain --info
+    * */
+    tasks.register("openApiGenerateDomain", org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
         generatorName.set("kotlin")
-        inputSpec.set("../resources/openapi.yaml")
-        outputDir.set("$rootDir/src/main/domain/model")
+//        inputSpec.set("../../resources/openapi.yaml")
+        inputSpec.set("C:/project/WhenToGoOut/resources/openapi.yaml")
+//        outputDir.set("$rootDir/src/main/java") // 이렇게 하면 동시성 문제로 파일 생성이 되지 않음 추후 다른 방법 시도
+        outputDir.set("$rootDir/generated")
         configOptions.set(
                 [
-                        "library" : "kotlin",
-                        "generateApis" : "false",   // API 인터페이스 생성 ❌
-                        "generateModels" : "true",  // Entity 클래스 생성 ✅
-                        "packageName" : "com.droker.domain.modelzz", // DTO 전용 패키지 설정
-                        "generateSupportingFiles" : "false"
+                        "library"                : "jvm-retrofit2",
+                        "dateLibrary"            : "java8",
+                        "useCoroutines"          : "true",
+                        "generateApis"           : "false",   // API 인터페이스 생성 ❌
+                        "generateModels"         : "true",  // Entity 클래스 생성 ✅
+                        "packageName"            : "com.droker.domain.model", // DTO 전용 패키지 설정
+                        "generateSupportingFiles": "false"
                 ]
         )
+        enablePostProcessFile.set(true)
     }
 }
 
@@ -75,17 +88,17 @@ dependencies {
     implementation(Google.MATERIAL)
 
     // Retrofit
-    implementation (Retrofit.RETROFIT)
-    implementation (Retrofit.CONVERTER_GSON)
-    implementation (Retrofit.CONVERTER_JAXB)
+    implementation(Retrofit.RETROFIT)
+    implementation(Retrofit.CONVERTER_GSON)
+    implementation(Retrofit.CONVERTER_JAXB)
 
     //okHttp
-    implementation (OkHttp.OKHTTP)
-    implementation (OkHttp.LOGGING_INTERCEPTOR)
+    implementation(OkHttp.OKHTTP)
+    implementation(OkHttp.LOGGING_INTERCEPTOR)
 
     // dager hilt
-    implementation (DaggerHilt.DAGGER_HILT)
-    kapt (DaggerHilt.DAGGER_HILT_COMPILER)
+    implementation(DaggerHilt.DAGGER_HILT)
+    kapt(DaggerHilt.DAGGER_HILT_COMPILER)
 
 }
 
