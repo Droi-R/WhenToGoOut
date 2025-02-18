@@ -7,18 +7,18 @@ plugins {
 }
 
 
-openApiGenerate {
-    generatorName.set("kotlin")
-    inputSpec.set("../resources/openapi.yaml")  // GitHub API
-    outputDir.set("$rootDir/src/main/data/remote")
-    configOptions.set(
-            [
-                    "library"      : "retrofit2",
-                    "dateLibrary"  : "java8",
-                    "useCoroutines": "true"
-            ]
-    )
-}
+//openApiGenerate {
+//    generatorName.set("kotlin")
+//    inputSpec.set("../resources/openapi.yaml")  // GitHub API
+//    outputDir.set("$rootDir/src/main/data/remote")
+//    configOptions.set(
+//            [
+//                    "library"      : "retrofit2",
+//                    "dateLibrary"  : "java8",
+//                    "useCoroutines": "true"
+//            ]
+//    )
+//}
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -70,7 +70,7 @@ android {
 
     tasks.register("openApiGenerateResponse", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
         generatorName.set("kotlin")
-        inputSpec.set("$rootDir/src/main/resources/openapi.yaml")
+        inputSpec.set("../resources/openapi.yaml")
         outputDir.set("$rootDir/data/src/main/kotlin")  // data 모듈의 기본 출력 경로
 
         configOptions.set(

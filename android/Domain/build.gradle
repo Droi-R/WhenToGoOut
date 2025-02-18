@@ -7,18 +7,18 @@ plugins {
 }
 
 
-openApiGenerate {
-    generatorName.set("kotlin")
-    inputSpec.set("../resources/openapi.yaml")  // GitHub API
-    outputDir.set("$rootDir/src/main/domain/model")
-    configOptions.set(
-            [
-                    "library"      : "retrofit2",
-                    "dateLibrary"  : "java8",
-                    "useCoroutines": "true"
-            ]
-    )
-}
+//openApiGenerate {
+//    generatorName.set("kotlin")
+//    inputSpec.set("../resources/openapi.yaml")  // GitHub API
+//    outputDir.set("$rootDir/src/main/domain/model")
+//    configOptions.set(
+//            [
+//                    "library"      : "retrofit2",
+//                    "dateLibrary"  : "java8",
+//                    "useCoroutines": "true"
+//            ]
+//    )
+//}
 
 android {
     ndkVersion rootProject.ext.ndkVersion
