@@ -1,13 +1,10 @@
-//apply plugin: "com.android.application"
-//apply plugin: "org.jetbrains.kotlin.android"
-//apply plugin: "com.facebook.react"
-//apply plugin: "org.jetbrains.compose"
-
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.facebook.react'
     id 'org.jetbrains.kotlin.plugin.compose' version '2.0.21'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 }
 
 
@@ -114,16 +111,34 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
     buildFeatures {
         compose true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "$compose_version"
+        kotlinCompilerExtensionVersion = "${Versions.COMPOSE_VERSION}"
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        if (name.contains("Test")) {
+            enabled = false
+        }
     }
 }
 
 dependencies {
+    implementation project(":Data")
+    implementation project(':Domain')
+
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
@@ -132,9 +147,25 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-    implementation("androidx.compose.material3:material3:1.1.0")
-    debugImplementation("androidx.compose.ui:ui-tooling:$compose_version")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation(Compose.MATERIAL3)
+    implementation(Compose.ACTIVITY)
+    implementation(Compose.UI)
+    implementation(Compose.TOOLING)
+
+
+
+    // dagger hilt
+    implementation (DaggerHilt.DAGGER_HILT)
+    kapt (DaggerHilt.DAGGER_HILT_COMPILER)
+    implementation (DaggerHilt.DAGGER_HILT_COMPOSE)
+
+
+    // Retrofit
+    implementation (Retrofit.RETROFIT)
+    implementation (Retrofit.CONVERTER_GSON)
+    implementation (Retrofit.CONVERTER_JAXB)
+
+    //okHttp
+    implementation (OkHttp.OKHTTP)
+    implementation (OkHttp.LOGGING_INTERCEPTOR)
 }

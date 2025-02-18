@@ -5,18 +5,25 @@ buildscript {
         compileSdkVersion = 35
         targetSdkVersion = 34
         ndkVersion = "27.1.12297006"
-        kotlinVersion = "2.0.21"
-        compose_version = "1.5.3" // 사용 중인 Compose 버전에 맞게 수정하세요.
     }
     repositories {
         google()
         mavenCentral()
     }
+
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
-        classpath("org.jetbrains.compose:compose-gradle-plugin:$compose_version")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN_VERSION}")
+        classpath("org.jetbrains.compose:compose-gradle-plugin:${Versions.COMPOSE_VERSION}")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT_VERSION}")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
     }
 }
 
