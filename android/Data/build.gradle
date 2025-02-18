@@ -7,18 +7,18 @@ plugins {
 }
 
 
-//openApiGenerate {
-//    generatorName.set("kotlin")
-//    inputSpec.set("../resources/openapi.yaml")  // GitHub API
-//    outputDir.set("$rootDir/src/main/data/remote")
-//    configOptions.set(
-//            [
-//                    "library"      : "retrofit2",
-//                    "dateLibrary"  : "java8",
-//                    "useCoroutines": "true"
-//            ]
-//    )
-//}
+openApiGenerate {
+    generatorName.set("kotlin")
+    inputSpec.set("../resources/openapi.yaml")  // GitHub API
+    outputDir.set("$rootDir/src/main/data/remote")
+    configOptions.set(
+            [
+                    "library"      : "retrofit2",
+                    "dateLibrary"  : "java8",
+                    "useCoroutines": "true"
+            ]
+    )
+}
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -52,37 +52,37 @@ android {
             enabled = false
         }
     }
-//    tasks.register("openApiGenerateApi", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
-//        generatorName.set("kotlin")
-//        inputSpec.set("../resources/openapi.yaml")
-//        outputDir.set("$rootDir/src/main/data/remote")  // data 모듈의 기본 출력 경로
-//
-//        configOptions.set(
-//                [
-//                        "library" : "kotlin",
-//                        "generateModels" : "true",  // DTO 클래스 생성 ✅
-//                        "generateApis" : "false",   // API 인터페이스 생성 ❌
-//                        "packageName" : "com.droker.data.remote.modelzz", // DTO 전용 패키지 설정
-//                        "generateSupportingFiles" : "false"
-//                ]
-//        )
-//    }
-//
-//    tasks.register("openApiGenerateResponse", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
-//        generatorName.set("kotlin")
-//        inputSpec.set("$rootDir/src/main/resources/openapi.yaml")
-//        outputDir.set("$rootDir/data/src/main/kotlin")  // data 모듈의 기본 출력 경로
-//
-//        configOptions.set(
-//                [
-//                        "library" : "retrofit2",
-//                        "generateModels" : "false", // DTO 클래스 생성 ❌
-//                        "generateApis" : "true",    // API 인터페이스 생성 ✅
-//                        "packageName" : "com.droker.data.remote.apizz", // API 전용 패키지 설정
-//                        "generateSupportingFiles" : "false"
-//                ]
-//        )
-//    }
+    tasks.register("openApiGenerateApi", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+        generatorName.set("kotlin")
+        inputSpec.set("../resources/openapi.yaml")
+        outputDir.set("$rootDir/src/main/data/remote")  // data 모듈의 기본 출력 경로
+
+        configOptions.set(
+                [
+                        "library" : "kotlin",
+                        "generateModels" : "true",  // DTO 클래스 생성 ✅
+                        "generateApis" : "false",   // API 인터페이스 생성 ❌
+                        "packageName" : "com.droker.data.remote.modelzz", // DTO 전용 패키지 설정
+                        "generateSupportingFiles" : "false"
+                ]
+        )
+    }
+
+    tasks.register("openApiGenerateResponse", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+        generatorName.set("kotlin")
+        inputSpec.set("$rootDir/src/main/resources/openapi.yaml")
+        outputDir.set("$rootDir/data/src/main/kotlin")  // data 모듈의 기본 출력 경로
+
+        configOptions.set(
+                [
+                        "library" : "retrofit2",
+                        "generateModels" : "false", // DTO 클래스 생성 ❌
+                        "generateApis" : "true",    // API 인터페이스 생성 ✅
+                        "packageName" : "com.droker.data.remote.apizz", // API 전용 패키지 설정
+                        "generateSupportingFiles" : "false"
+                ]
+        )
+    }
 }
 
 dependencies {
