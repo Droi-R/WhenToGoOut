@@ -28,7 +28,7 @@ fun MyComposeComponent() {
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Text(text = "splash Page", color = Color.Black)
+        Text(text = "splash Page wowwow", color = Color.Black)
     }
 }
 

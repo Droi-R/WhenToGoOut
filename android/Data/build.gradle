@@ -3,7 +3,22 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+    id("org.openapi.generator") version "6.6.0"
 }
+
+
+//openApiGenerate {
+//    generatorName.set("kotlin")
+//    inputSpec.set("../resources/openapi.yaml")  // GitHub API
+//    outputDir.set("$rootDir/src/main/data/remote")
+//    configOptions.set(
+//            [
+//                    "library"      : "retrofit2",
+//                    "dateLibrary"  : "java8",
+//                    "useCoroutines": "true"
+//            ]
+//    )
+//}
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -37,30 +52,63 @@ android {
             enabled = false
         }
     }
+//    tasks.register("openApiGenerateApi", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+//        generatorName.set("kotlin")
+//        inputSpec.set("../resources/openapi.yaml")
+//        outputDir.set("$rootDir/src/main/data/remote")  // data 모듈의 기본 출력 경로
+//
+//        configOptions.set(
+//                [
+//                        "library" : "kotlin",
+//                        "generateModels" : "true",  // DTO 클래스 생성 ✅
+//                        "generateApis" : "false",   // API 인터페이스 생성 ❌
+//                        "packageName" : "com.droker.data.remote.modelzz", // DTO 전용 패키지 설정
+//                        "generateSupportingFiles" : "false"
+//                ]
+//        )
+//    }
+//
+//    tasks.register("openApiGenerateResponse", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+//        generatorName.set("kotlin")
+//        inputSpec.set("$rootDir/src/main/resources/openapi.yaml")
+//        outputDir.set("$rootDir/data/src/main/kotlin")  // data 모듈의 기본 출력 경로
+//
+//        configOptions.set(
+//                [
+//                        "library" : "retrofit2",
+//                        "generateModels" : "false", // DTO 클래스 생성 ❌
+//                        "generateApis" : "true",    // API 인터페이스 생성 ✅
+//                        "packageName" : "com.droker.data.remote.apizz", // API 전용 패키지 설정
+//                        "generateSupportingFiles" : "false"
+//                ]
+//        )
+//    }
 }
 
 dependencies {
 
     implementation project(':Domain')
 
-    implementation (KTX.CORE)
-    implementation (AndroidX.APP_COMPAT)
-    implementation (Google.MATERIAL)
+    implementation(KTX.CORE)
+    implementation(AndroidX.APP_COMPAT)
+    implementation(Google.MATERIAL)
 
 
     // Retrofit
-    implementation (Retrofit.RETROFIT)
-    implementation (Retrofit.CONVERTER_GSON)
-    implementation (Retrofit.CONVERTER_JAXB)
+    implementation(Retrofit.RETROFIT)
+    implementation(Retrofit.CONVERTER_GSON)
+    implementation(Retrofit.CONVERTER_JAXB)
 
     //okHttp
-    implementation (OkHttp.OKHTTP)
-    implementation (OkHttp.LOGGING_INTERCEPTOR)
+    implementation(OkHttp.OKHTTP)
+    implementation(OkHttp.LOGGING_INTERCEPTOR)
 
     //coroutines
-    implementation (Coroutines.COROUTINES)
+    implementation(Coroutines.COROUTINES)
 
     // dager hilt
-    implementation (DaggerHilt.DAGGER_HILT)
-    kapt (DaggerHilt.DAGGER_HILT_COMPILER)
+    implementation(DaggerHilt.DAGGER_HILT)
+    kapt(DaggerHilt.DAGGER_HILT_COMPILER)
 }
+
+

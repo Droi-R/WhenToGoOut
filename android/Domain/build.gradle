@@ -3,7 +3,22 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+    id("org.openapi.generator") version "6.6.0"
 }
+
+
+//openApiGenerate {
+//    generatorName.set("kotlin")
+//    inputSpec.set("../resources/openapi.yaml")  // GitHub API
+//    outputDir.set("$rootDir/src/main/domain/model")
+//    configOptions.set(
+//            [
+//                    "library"      : "retrofit2",
+//                    "dateLibrary"  : "java8",
+//                    "useCoroutines": "true"
+//            ]
+//    )
+//}
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -36,6 +51,21 @@ android {
             enabled = false
         }
     }
+
+//    tasks.register("openApiGenerateDomain", org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+//        generatorName.set("kotlin")
+//        inputSpec.set("../resources/openapi.yaml")
+//        outputDir.set("$rootDir/src/main/domain/model")
+//        configOptions.set(
+//                [
+//                        "library" : "kotlin",
+//                        "generateApis" : "false",   // API 인터페이스 생성 ❌
+//                        "generateModels" : "true",  // Entity 클래스 생성 ✅
+//                        "packageName" : "com.droker.domain.modelzz", // DTO 전용 패키지 설정
+//                        "generateSupportingFiles" : "false"
+//                ]
+//        )
+//    }
 }
 
 dependencies {
@@ -58,3 +88,5 @@ dependencies {
     kapt (DaggerHilt.DAGGER_HILT_COMPILER)
 
 }
+
+

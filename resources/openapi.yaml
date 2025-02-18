@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: Github API
+  version: 1.0.0
+
+paths:
+  /repo/{id}:
+    get:
+      summary: Get GitHub repository
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: API Response DTO
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GithubResponse"
+
+  /users/{owner}/repos:
+    get:
+      summary: Get GitHub repositories
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of GitHub repositories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GithubResponse"
+
+components:
+  schemas:
+    GithubResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        created_at:
+          type: string
+        html_url:
+          type: string
+
+    GithubEntity:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        date:
+          type: string
+        url:
+          type: string
