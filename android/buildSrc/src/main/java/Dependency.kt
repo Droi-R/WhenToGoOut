@@ -74,4 +74,5 @@ object Compose {
     const val ACTIVITY = "androidx.activity:activity-compose:1.7.2"
     const val UI = "androidx.compose.ui:ui:1.5.3"
     const val TOOLING = "androidx.compose.ui:ui-tooling:1.5.3"
+    const val FOUNDATION = "androidx.compose.foundation:foundation:1.5.3"
 }

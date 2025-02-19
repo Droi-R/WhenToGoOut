@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
+import com.whentogoout.home.HomeScreen
 
 // Jetpack Compose UI 정의
 @Composable
@@ -36,7 +37,8 @@ fun MyComposeComponent() {
 class MyComposeView(context: Context) : FrameLayout(context) {
     init {
         val composeView = ComposeView(context).apply {
-            setContent { MyComposeComponent() }
+//            setContent { MyComposeComponent() }
+            setContent { HomeScreen() }
         }
         addView(composeView)
     }

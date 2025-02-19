@@ -147,10 +147,12 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
     implementation(Compose.MATERIAL3)
     implementation(Compose.ACTIVITY)
     implementation(Compose.UI)
     implementation(Compose.TOOLING)
+    implementation(Compose.FOUNDATION)
 
 
 
