@@ -15,28 +15,22 @@ import androidx.compose.ui.unit.dp
 // ViewModel 관련
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.droker.domain.model.GithubEntity
+import com.whentogoout.study.DemoScreen
 import com.whentogoout.study.DemoText
 
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewHomeScreen() {
-//    HomeScreenScaffold(
-//        uiState = UiState.Success,
-//        homeItems = listOf(
-//            GithubEntity("Droker", "ididid", "2025", "http"),
-//            GithubEntity("Droker", "ididid", "2025", "http"),
-//            GithubEntity("Droker", "ididid", "2025", "http"),
-//            GithubEntity("Droker", "ididid", "2025", "http"),
-//        )
-//    )
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        DemoText("PreviewHomeScreen", 20f)
-    }
-
+    HomeScreenScaffold(
+        uiState = UiState.Success,
+        homeItems = listOf(
+            GithubEntity("Droker", "ididid", "2025", "http"),
+            GithubEntity("Droker", "ididid", "2025", "http"),
+            GithubEntity("Droker", "ididid", "2025", "http"),
+            GithubEntity("Droker", "ididid", "2025", "http"),
+        )
+    )
 }
 
 
