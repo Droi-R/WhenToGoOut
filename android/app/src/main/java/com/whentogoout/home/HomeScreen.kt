@@ -15,20 +15,28 @@ import androidx.compose.ui.unit.dp
 // ViewModel 관련
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.droker.domain.model.GithubEntity
+import com.whentogoout.study.DemoText
 
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewHomeScreen() {
-    HomeScreenScaffold(
-        uiState = UiState.Success,
-        homeItems = listOf(
-            GithubEntity("Droker", "ididid", "2025", "http"),
-            GithubEntity("Droker", "ididid", "2025", "http"),
-            GithubEntity("Droker", "ididid", "2025", "http"),
-            GithubEntity("Droker", "ididid", "2025", "http"),
-        )
-    )
+//    HomeScreenScaffold(
+//        uiState = UiState.Success,
+//        homeItems = listOf(
+//            GithubEntity("Droker", "ididid", "2025", "http"),
+//            GithubEntity("Droker", "ididid", "2025", "http"),
+//            GithubEntity("Droker", "ididid", "2025", "http"),
+//            GithubEntity("Droker", "ididid", "2025", "http"),
+//        )
+//    )
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        DemoText("PreviewHomeScreen", 20f)
+    }
+
 }
 
 
@@ -95,9 +103,11 @@ fun HomeScreenContent(
     homeItems: List<GithubEntity>,
     padding: PaddingValues
 ) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(padding)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(padding)
+    ) {
         when (uiState) {
             is UiState.Loading -> LoadingView()
             is UiState.Success -> HomeContent(homeItems)
